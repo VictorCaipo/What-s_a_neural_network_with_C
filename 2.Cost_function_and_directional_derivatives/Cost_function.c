@@ -1,31 +1,21 @@
 #include <stdio.h>
 #include <math.h>
 
-float cost_function(float y[], float a[sizeof(a_vector)]){
-    float average = 0.0f, error;
-    for(int ii = 0; ii<5 ; ii++){
-        error = y[ii]-a[ii];
-        average += error*error;
+float cost_function(float y[9], float a[9]){
+    float suma = 0.0;
+    float error = 0.0;
+    for(int ii = 0; ii<9 ; ii++){
+        error = y[ii]- a[ii];
+        suma += error*error;
     }
-    return average/5.0f;
+    return suma/(2*9);
 }
 
-size_t size_array(float array[]){
-    return sizeof(array);
-}
-
-float y_vector[5]={1,2,3,4,5};
-float a_vector[5]={0.9,1.8,2.7,4.2,4.8};
-size_t size_y = size_array(y_vector);
-size_t size_y = size_array(a_vector);
+float ideal_values[9]={1.0 , 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+float predictions[9]={0.9, 1.8, 2.7, 4.2, 4.8, 6.1, 7.1, 8.2, 8.8};
 
 int main(void){
-
-    if (sizeof(y_vector)==sizeof(a_vector)){
-        float output = cost_function(y_vector,a_vector);
-        printf("Result: %.3f\n",output);        
-    } else{
-        printf("The vectors a and y have different sizes");
-    }
+    float z_value = cost_function(ideal_values,predictions);
+    printf("Z value: %.3f \n",z_value);
     return 0;
 }
